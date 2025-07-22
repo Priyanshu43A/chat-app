@@ -27,6 +27,25 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
+// Log all registered routes for debugging
+function logRoutes(app) {
+  console.log("Registered routes:");
+  app._router.stack.forEach((middleware) => {
+    if (middleware.route) {
+      // routes registered directly on the app
+      console.log(middleware.route);
+    } else if (middleware.name === "router") {
+      // router middleware
+      middleware.handle.stack.forEach((handler) => {
+        if (handler.route) {
+          console.log(handler.route);
+        }
+      });
+    }
+  });
+}
+logRoutes(app);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend", "dist")));
 
