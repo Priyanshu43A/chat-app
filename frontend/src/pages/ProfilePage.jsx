@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 
 const ProfilePage = () => {
   const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
-  console.log(`authUser`, authUser);
+  //console.log(`authUser`, authUser);
   const [selectedImg, setSelectedImg] = useState(null);
 
   const handleImageUpload = async (e) => {

@@ -151,9 +151,9 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   try {
-    console.log(req.user);
+    //console.log(req.user);
     const userId = req.user._id.toString();
-    console.log(userId);
+    //console.log(userId);
     if (!userId) {
       return res.status(400).json({ message: "User ID is required" });
     }

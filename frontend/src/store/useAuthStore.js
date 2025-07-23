@@ -4,7 +4,7 @@ import { axiosInstance } from "../lib/axios";
 import { io } from "socket.io-client";
 
 const BASE_URL =
-  import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
+  import.meta.env.MODE === "development" ? "http://localhost:5000" : "/";
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
@@ -97,7 +97,7 @@ export const useAuthStore = create((set, get) => ({
         "/auth/update-profile-picture",
         formData
       );
-      console.log("Profile update response:", res.data);
+      //console.log("Profile update response:", res.data);
       if (res.status !== 200) {
         throw new Error("Profile update failed");
       }
@@ -122,7 +122,7 @@ export const useAuthStore = create((set, get) => ({
   connectSocket: () => {
     const { authUser } = get();
     if (!authUser || get().socket?.connected) {
-      console.log("already connected or invalid user!");
+      //console.log("already connected or invalid user!");
       return;
     }
     const socket = io(BASE_URL, {
